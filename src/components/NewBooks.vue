@@ -2,11 +2,17 @@
 import ChartHeader from './ChartHeader.vue'
 import { defineComponent } from 'vue';
 
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay } from 'swiper'
+import 'swiper/css';
+
 export default defineComponent({
     name: 'NewBooks',
-    components: { ChartHeader },
+    components: { ChartHeader, Swiper, SwiperSlide },
     setup() {
-        return {  }
+        return { 
+            modules: [Autoplay] 
+        }
     }
 })
 </script>
@@ -15,6 +21,13 @@ export default defineComponent({
     <div class="sub-chart-container">
         <ChartHeader :title="'新书推荐'"/>
         <div class="new-books-list">
+        <swiper :modules="modules"
+                :autoplay="{
+                    deplay: 3000
+                }"
+        >
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-bofuwa.png" alt="">
@@ -48,11 +61,90 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+            <div class="new-book-item">
+                <div class="book-image">
+                    <img src="/book-hamelton.png" alt="">
+                </div>
+                <span class="book-name">成为波伏娃</span>
+                <span class="book-author">
+                    [英]凯特·柯克帕特..
+                    <br>
+                    中信出版社
+                </span>
+            </div>
+            <div class="new-book-item">
+                <div class="book-image">
+                    <img src="/book-hamelton.png" alt="" />
+                </div>
+                <span class="book-name">成为波伏娃</span>
+                <span class="book-author">
+                    [英]凯特·柯克帕特..
+                    <br>
+                    中信出版社
+                </span>
+            </div>
+            <div class="new-book-item">
+                <div class="book-image">
+                    <img src="/book-hamelton.png" alt="" />
+                </div>
+                <span class="book-name">成为波伏娃</span>
+                <span class="book-author">
+                    [英]凯特·柯克帕特..
+                    <br>
+                    中信出版社
+                </span>
+            </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+            <div class="new-book-item">
+                <div class="book-image">
+                    <img src="/book-maboyong.png" alt="">
+                </div>
+                <span class="book-name">成为波伏娃</span>
+                <span class="book-author">
+                    [英]凯特·柯克帕特..
+                    <br>
+                    中信出版社
+                </span>
+            </div>
+            <div class="new-book-item">
+                <div class="book-image">
+                    <img src="/book-maboyong.png" alt="" />
+                </div>
+                <span class="book-name">成为波伏娃</span>
+                <span class="book-author">
+                    [英]凯特·柯克帕特..
+                    <br>
+                    中信出版社
+                </span>
+            </div>
+            <div class="new-book-item">
+                <div class="book-image">
+                    <img src="/book-maboyong.png" alt="" />
+                </div>
+                <span class="book-name">成为波伏娃</span>
+                <span class="book-author">
+                    [英]凯特·柯克帕特..
+                    <br>
+                    中信出版社
+                </span>
+            </div>
+            </SwiperSlide>
+        </swiper>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
+
+
+:deep(.swiper-slide) {
+    display: flex;
+}
 .new-books-list{
     padding: 25px 12px 16px;
     display: flex;

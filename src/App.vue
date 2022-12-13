@@ -99,23 +99,23 @@ onUnmounted(() => {
 // const historyContent = ref(null)
 // let contentScrollTimer = null
 // onMounted(() => {
-  // const contentDom = historyContent.value
-  // const contentHeight = contentDom.clientHeight
-  // const parentHeight = contentDom.parentElement.clientHeight
+//   const contentDom = historyContent.value
+//   const contentHeight = contentDom.clientHeight
+//   const parentHeight = contentDom.parentElement.clientHeight
   
-  // let scroll = 0
-  // const step = 3
-  // if (contentHeight > parentHeight) {
-  //   contentScrollTimer = setInterval(() => {
-  //     scroll = scroll + step
-  //     if (scroll + parentHeight < contentHeight) {
-  //       contentDom.scrollTop = scroll
-  //     } else {
-  //       contentDom.scrollTop = contentDom.scrollHeight
-  //       clearInterval(contentScrollTimer)
-  //     }    
-  //   }, 2000)
-  // }
+//   let scroll = 0
+//   const step = 3
+//   if (contentHeight > parentHeight) {
+//     contentScrollTimer = setInterval(() => {
+//       scroll = scroll + step
+//       if (scroll + parentHeight < contentHeight) {
+//         contentDom.scrollTop = scroll
+//       } else {
+//         contentDom.scrollTop = contentDom.scrollHeight
+//         clearInterval(contentScrollTimer)
+//       }    
+//     }, 2000)
+//   }
 // })
 
 
@@ -443,6 +443,10 @@ onUnmounted(() => {
           height: 200px;  
           max-height: 200px;
           overflow: scroll;
+          scrollbar-width: none;
+          &::-webkit-scrollbar {
+            display: none
+          }
           .content { text-indent: 30px; }
         }
       }
