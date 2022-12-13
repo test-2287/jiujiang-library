@@ -16,7 +16,9 @@ export default defineComponent({
         <ChartHeader :title="'新书推荐'"/>
         <div class="new-books-list">
             <div class="new-book-item">
-                <div class="book-image"></div>
+                <div class="book-image">
+                    <img src="/book-bofuwa.png" alt="">
+                </div>
                 <span class="book-name">成为波伏娃</span>
                 <span class="book-author">
                     [英]凯特·柯克帕特..
@@ -25,7 +27,9 @@ export default defineComponent({
                 </span>
             </div>
             <div class="new-book-item">
-                <div class="book-image"></div>
+                <div class="book-image">
+                    <img src="/book-bofuwa.png" alt="" />
+                </div>
                 <span class="book-name">成为波伏娃</span>
                 <span class="book-author">
                     [英]凯特·柯克帕特..
@@ -34,7 +38,9 @@ export default defineComponent({
                 </span>
             </div>
             <div class="new-book-item">
-                <div class="book-image"></div>
+                <div class="book-image">
+                    <img src="/book-bofuwa.png" alt="" />
+                </div>
                 <span class="book-name">成为波伏娃</span>
                 <span class="book-author">
                     [英]凯特·柯克帕特..
@@ -63,6 +69,10 @@ export default defineComponent({
             height: 142px;
             border: 1px solid rgba(48, 100, 232, 0.3);
             filter: drop-shadow(6px 6px 12px rgba(74, 142, 255, 0.25));
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
         .book-name {
             margin-bottom: 7px;

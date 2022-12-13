@@ -141,7 +141,7 @@ export default defineComponent({
     height: 190px;
 }
 
-.data-list {
+/* .data-list {
     padding-top: 15px;
     display: flex;
     .item {
@@ -174,5 +174,5 @@ export default defineComponent({
         font-size: 20px;
         color: #fff;
     }
-}
+} */
 </style>

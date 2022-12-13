@@ -108,11 +108,11 @@ export default defineComponent({
     <div class="sub-chart-container">
     <ChartHeader :title="'市馆借阅数据'"/>
     <div class="arrive-data data-list">
-        <div class="item">
+        <div class="item borrow">
             <span class="label">今日借阅</span>
             <span class="number">203</span>
         </div>        
-        <div class="item">
+        <div class="item return">
             <span class="label">今日还书</span>
             <span class="number">203</span>
         </div>
@@ -133,5 +133,27 @@ export default defineComponent({
 .chart{
     width: 406px;
     height: 190px;
+}
+
+.data-list {
+    .item.borrow .label::after{
+        margin-left: 10px;
+        margin-top: -2px;
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: #3064E8;
+        border-radius: 50%;
+    }
+
+    .item.return .label::after{
+        margin-left: 10px;
+        margin-top: -2px;
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: #D26A0E;
+        border-radius: 50%;
+    }
 }
 </style>

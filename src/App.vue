@@ -9,7 +9,7 @@ import JicengBorrow from './components/JicengBorrow.vue'
 import BookBorrowList from './components/BookBorrowList.vue'
 import NewBooks from './components/NewBooks.vue'
 
-import {onMounted, onUnmounted, ref} from 'vue'
+import {onMounted, onUnmounted, ref, nextTick} from 'vue'
 
 const mapDistricData = ref({
   name: '濂溪区', value: { bookBorrowNum: 210, enterNum: 50, applicants: 30, bookNum: 53454 },
@@ -21,8 +21,6 @@ const videoArr = ["http://commondatastorage.googleapis.com/gtv-videos-bucket/sam
 let curVideo = 0
 
 const hightlight = (event) => {
-  // console.log(11111);
-  // console.log(event);
   mapDistricData.value = event.data
 }
 
@@ -43,50 +41,50 @@ const value1 = 3514674;
 
 
 const numberGrow = (ele, value) => {
-        // debugger;
-        //【这里调速度 1 ，步进值， 通俗地讲，就是每次跳的时候，增加的一个增量】
-        let step = parseInt((value * 100) / (time * 1000));
-        // 设置当前值(这个值是计时器持续运行时，每次页面上显示的跳动值，不是最终的那个具体值)
-        let current = 0
-        // 设置开始值
-        let start = 0
-        // 设置定时器，用来反复横跳的，哈哈哈
-        let t = setInterval(() =>{
-          // 每次增加一点步进值
-          start += step
-          // 开始值大于传过来的的值，说明 到点了，不用 继续横跳了
-          if (start > value) {
-            clearInterval(t)
-            // 把穿过的值赋给start，结束
-            start = value
-            // 清掉计时器
-            t = null
-          }
-          if(start == 0){
-            start = value;
-            clearInterval(t)
-          }
-          // 当前值等于开始值，那就结束
-          if (value === 0) {
-          return
-          }
-          current = start
-          // 正则
-          ele.innerHTML = current.toString().replace(/(\d)(?=(?:\d{3}[+]?)+$)/g, '$1,')
-        }, time * 100)  // 【这里调速度 2， 通俗地讲，这里是页面上，肉眼能看到的跳动频率】
-        // 本来想设置成 秒 *1000的，但是实在太慢了，就改成 *100了
-      }
+  // debugger;
+  //【这里调速度 1 ，步进值， 通俗地讲，就是每次跳的时候，增加的一个增量】
+  let step = parseInt((value * 100) / (time * 1000));
+  // 设置当前值(这个值是计时器持续运行时，每次页面上显示的跳动值，不是最终的那个具体值)
+  let current = 0
+  // 设置开始值
+  let start = 0
+  // 设置定时器，用来反复横跳的，哈哈哈
+  let t = setInterval(() =>{
+    // 每次增加一点步进值
+    start += step
+    // 开始值大于传过来的的值，说明 到点了，不用 继续横跳了
+    if (start > value) {
+      clearInterval(t)
+      // 把穿过的值赋给start，结束
+      start = value
+      // 清掉计时器
+      t = null
+    }
+    if(start == 0){
+      start = value;
+      clearInterval(t)
+    }
+    // 当前值等于开始值，那就结束
+    if (value === 0) {
+    return
+    }
+    current = start
+    // 正则
+    ele.innerHTML = current.toString().replace(/(\d)(?=(?:\d{3}[+]?)+$)/g, '$1,')
+  }, time * 100)  // 【这里调速度 2， 通俗地讲，这里是页面上，肉眼能看到的跳动频率】
+  // 本来想设置成 秒 *1000的，但是实在太慢了，就改成 *100了
+}
 
 
-      onMounted(() => {
-        numberGrow(centerNumber1.value, value1)
-        numberGrow(centerNumber2.value, value2)
-        numberGrow(centerNumber3.value, value3)
-      })
+onMounted(() => {
+  numberGrow(centerNumber1.value, value1)
+  numberGrow(centerNumber2.value, value2)
+  numberGrow(centerNumber3.value, value3)
+})
 
 
 let bulletinTimer = null
-let bulletinActive = ref(true)
+let bulletinActive = ref(false)
 onMounted(() => {
   bulletinTimer = setInterval(() => {
     bulletinActive.value = !bulletinActive.value
@@ -95,6 +93,31 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(bulletinTimer)
 })
+
+
+// fix me: 自动滚动动画 这里有问题
+// const historyContent = ref(null)
+// let contentScrollTimer = null
+// onMounted(() => {
+  // const contentDom = historyContent.value
+  // const contentHeight = contentDom.clientHeight
+  // const parentHeight = contentDom.parentElement.clientHeight
+  
+  // let scroll = 0
+  // const step = 3
+  // if (contentHeight > parentHeight) {
+  //   contentScrollTimer = setInterval(() => {
+  //     scroll = scroll + step
+  //     if (scroll + parentHeight < contentHeight) {
+  //       contentDom.scrollTop = scroll
+  //     } else {
+  //       contentDom.scrollTop = contentDom.scrollHeight
+  //       clearInterval(contentScrollTimer)
+  //     }    
+  //   }, 2000)
+  // }
+// })
+
 
 
 </script>
@@ -189,7 +212,8 @@ onUnmounted(() => {
             </div>
           </div>
           <div class="history" :class="{'active': !bulletinActive}">
-
+            <div class="content" ref="historyContent">九江是国家历史文化名城， [87] 一座有着2200多年历史的江南名城，地处长江、京九铁路两大经济开发带交叉点，是长江中游区域中心港口城市，是中国首批5个沿江对外开放城市之一，也是东部沿海开发向中西部推进的过渡地带，号称“三江之口，七省通衢”与“天下眉目之地”，有“江西北大门”之称。
+九江是国家历史文化名城， [87] 一座有着2200多年历史的江南名城，地处长江、京九铁路两大经济开发带交叉点，是长江中游区域中心港口城市，是中国首批5个沿江对外开放城市之一，也是东部沿海开发向中西部推进的过渡地带，号称“三江之口，七省通衢”与“天下眉目之地”，有“江西北大门”之称。</div>            
           </div>
         </div>
         <div class="right">
@@ -248,6 +272,7 @@ onUnmounted(() => {
   .date-time {
     display: flex;
     .icon-calender{
+      margin-right: 15px;
       width: 24px;
       height: 24px;
       background-image: url('/icon-calender.svg');
@@ -323,7 +348,7 @@ onUnmounted(() => {
       box-sizing: border-box;
       .left {
         margin-right: 24px;
-        padding-bottom: 20px;
+        padding-bottom: 24px;
         .header {
           display: flex;
           align-items: center;
@@ -397,19 +422,28 @@ onUnmounted(() => {
               line-height: 24px;
             }
           }
-          .content {
-            padding: 0 12px;
-            font-family: 'Microsoft YaHei';
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 24px;
-            color:#AFC4F9;  
-          }
+          
         }
 
         .bulletin, .history {
           display: none;
           &.active { display: block;}
+        }
+
+        .content {
+          padding: 0 12px;
+          font-family: 'Microsoft YaHei';
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+          color:#AFC4F9;  
+        }
+
+        .history {
+          height: 200px;  
+          max-height: 200px;
+          overflow: scroll;
+          .content { text-indent: 30px; }
         }
       }
 
@@ -449,8 +483,8 @@ onUnmounted(() => {
     .item {
         flex: 1;
         padding-left: 10px;
-        padding-bottom: 4px;
-        margin-top: -5px;
+        /* padding-bottom: 4px; */
+        /* margin-top: -5px; */
         border-left: 1px solid rgba(74, 142, 255, 0.3);
         position: relative;
         color: #3064E8;
@@ -470,10 +504,15 @@ onUnmounted(() => {
     .label {
         color: #3064E8;
         font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 2px;
     }
     .number {
         font-weight: 700;
         font-size: 20px;
+        line-height: 26px;
         color: #fff;
     }
 }

@@ -101,19 +101,19 @@ export default defineComponent({
     <ChartHeader :title="'市馆办证人数'"/>
     <div class="arrive-data data-list">
         <div class="item">
-            <span class="label">今日借阅</span>
+            <span class="label">今日办证</span>
             <span class="number">203</span>
         </div>        
         <div class="item">
-            <span class="label">今日还书</span>
+            <span class="label">本月办证</span>
             <span class="number">203</span>
         </div>
         <div class="item">
-            <span class="label">本月借阅</span>
+            <span class="label">全年办证</span>
             <span class="number">203</span>
         </div>
         <div class="item">
-            <span class="label">全年借阅</span>
+            <span class="label">全年微信粉丝</span>
             <span class="number">203</span>
         </div>
     </div>
