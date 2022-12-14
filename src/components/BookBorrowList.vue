@@ -2,11 +2,15 @@
 import ChartHeader from './ChartHeader.vue'
 import { defineComponent } from 'vue';
 
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay } from 'swiper'
+import 'swiper/css';
+
 export default defineComponent({
     name: 'BookBorrowList',
-    components: { ChartHeader },
+    components: { ChartHeader, Swiper, SwiperSlide },
     setup() {
-        return {  }
+        return { modules: [Autoplay]  }
     }
 })
 </script>
@@ -15,10 +19,20 @@ export default defineComponent({
     <div class="sub-chart-container">
         <ChartHeader :title="'本月图书借阅排行榜'"/>
         <div class="borrow-list">
+        <swiper 
+            :direction="'vertical'" 
+            :slidesPerView="5"
+            :autoplay="{
+                delay:3000
+            }"
+            :loop="true"
+            :modules="modules">
+
+        <SwiperSlide>
             <div class="list-item">
                 <div class="item-left">
-                    <div class="icon">
-                        <span>1</span>
+                    <div class="icon" style="background-image: url('/list-orange.png');">
+                        <span :style="'background: linear-gradient(180deg, #FFFFFF 37.04%, #FF5823 100%);-webkit-background-clip: text;background-clip: text;'">1</span>
                     </div>
                     <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
                 </div>
@@ -27,10 +41,13 @@ export default defineComponent({
                     <span>99</span>
                 </div>
             </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
             <div class="list-item">
                 <div class="item-left">
-                    <div class="icon">
-                        <span>2</span>
+                    <div class="icon" style="background-image:url('/list-orange.png')">
+                        <span :style="'background: linear-gradient(180deg, #FFFFFF 37.04%, #FF5823 100%);-webkit-background-clip: text;background-clip: text;'">2</span>
                     </div>
                     <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
                 </div>
@@ -39,10 +56,13 @@ export default defineComponent({
                     <span>99</span>
                 </div>
             </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
             <div class="list-item">
                 <div class="item-left">
-                    <div class="icon">
-                        <span>3</span>
+                    <div class="icon" style="background-image: url('/list-orange.png')">
+                        <span :style="'background: linear-gradient(180deg, #FFFFFF 37.04%, #FF5823 100%);-webkit-background-clip: text;background-clip: text;'">3</span>
                     </div>
                     <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
                 </div>
@@ -51,6 +71,9 @@ export default defineComponent({
                     <span>99</span>
                 </div>
             </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
             <div class="list-item">
                 <div class="item-left">
                     <div class="icon">
@@ -63,6 +86,9 @@ export default defineComponent({
                     <span>99</span>
                 </div>
             </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
             <div class="list-item">
                 <div class="item-left">
                     <div class="icon">
@@ -75,23 +101,108 @@ export default defineComponent({
                     <span>99</span>
                 </div>
             </div>
+        </SwiperSlide>
 
+        <SwiperSlide>
+            <div class="list-item">
+                <div class="item-left">
+                    <div class="icon">
+                        <span>6</span>
+                    </div>
+                    <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
+                </div>
+                <div class="item-right">
+                    <span>借阅</span>
+                    <span>99</span>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div class="list-item">
+                <div class="item-left">
+                    <div class="icon">
+                        <span>7</span>
+                    </div>
+                    <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
+                </div>
+                <div class="item-right">
+                    <span>借阅</span>
+                    <span>99</span>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div class="list-item">
+                <div class="item-left">
+                    <div class="icon">
+                        <span>8</span>
+                    </div>
+                    <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
+                </div>
+                <div class="item-right">
+                    <span>借阅</span>
+                    <span>99</span>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div class="list-item">
+                <div class="item-left">
+                    <div class="icon">
+                        <span>9</span>
+                    </div>
+                    <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
+                </div>
+                <div class="item-right">
+                    <span>借阅</span>
+                    <span>99</span>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div class="list-item">
+                <div class="item-left">
+                    <div class="icon">
+                        <span>10</span>
+                    </div>
+                    <span class="book-name">存在主义咖啡馆 : 自由、存在和杏子鸡尾酒</span>
+                </div>
+                <div class="item-right">
+                    <span>借阅</span>
+                    <span>99</span>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        </swiper>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
+:deep(.swiper.swiper-vertical) {
+    height: 250px;
+}
+
 .borrow-list {
     padding: 0 7px;
     padding-top: 5px;
+    height: 250px;
+    overflow: hidden;
     
     .list-item {
-        height: 50x;
+        box-sizing: border-box;
+        height: 50px;
         padding: 5px 10px;
         display: flex;
         justify-content: space-between;   
         align-items: center;
-        &:nth-child(-n+3) {
+        overflow: hidden;
+        /* &:nth-child(-n+3) {
             .item-left .icon {
                 background-image: url('/list-orange.png');
                 > span {
@@ -101,7 +212,7 @@ export default defineComponent({
                     background-clip: text;
                 }
             }
-        }
+        } */
     }
 
     .item-left {
