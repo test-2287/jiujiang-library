@@ -35,9 +35,9 @@ const centerNumber1 = ref(null)
 const centerNumber2 = ref(null)
 const centerNumber3 = ref(null)
 const value1 = 3514674;
-      const value2 = 4282;
-      const value3 = 2489;
-      const time = 2
+const value2 = 4282;
+const value3 = 2489;
+const time = 2
 
 
 const numberGrow = (ele, value) => {
@@ -83,40 +83,45 @@ onMounted(() => {
 })
 
 
+let bulletinActive = ref(true)
 let bulletinTimer = null
-let bulletinActive = ref(false)
-onMounted(() => {
-  bulletinTimer = setInterval(() => {
-    bulletinActive.value = !bulletinActive.value
-  }, 4000)
-})
-onUnmounted(() => {
-  clearInterval(bulletinTimer)
-})
-
-
-// fix me: 自动滚动动画 这里有问题
-// const historyContent = ref(null)
-// let contentScrollTimer = null
-// onMounted(() => {
-//   const contentDom = historyContent.value
-//   const contentHeight = contentDom.clientHeight
-//   const parentHeight = contentDom.parentElement.clientHeight
+const toggleBulletinHistory = () => {
   
-//   let scroll = 0
-//   const step = 3
-//   if (contentHeight > parentHeight) {
-//     contentScrollTimer = setInterval(() => {
-//       scroll = scroll + step
-//       if (scroll + parentHeight < contentHeight) {
-//         contentDom.scrollTop = scroll
-//       } else {
-//         contentDom.scrollTop = contentDom.scrollHeight
-//         clearInterval(contentScrollTimer)
-//       }    
-//     }, 2000)
-//   }
-// })
+  bulletinTimer = setTimeout(() => {
+    bulletinActive.value = false  
+    nextTick(() => {
+      scrollHistoryContent()
+    })
+  }, 4000)
+}
+
+
+const historyContent = ref(null)
+const scrollHistoryContent = () => {
+  let contentScrollTimer = null
+  const contentDom = historyContent.value
+  const contentParent = contentDom.parentElement
+  const contentHeight = contentDom.clientHeight
+  const parentHeight = contentParent.clientHeight
+
+  let scroll = 0
+  if (contentHeight > parentHeight) {
+    contentScrollTimer = setInterval(() => {
+      if (scroll + parentHeight < contentHeight) {
+        contentParent.scrollTop = scroll++
+      } else {
+        contentParent.scrollTop = contentDom.scrollHeight
+        clearInterval(contentScrollTimer)
+        bulletinActive.value = true
+        toggleBulletinHistory()
+      }    
+    }, 100)
+  }
+}
+
+onMounted(() => {
+  toggleBulletinHistory()
+})
 
 
 
@@ -180,15 +185,15 @@ onUnmounted(() => {
             <span class="item-num">{{mapDistricData.value.bookBorrowNum}}</span>
           </div>
           <div class="data-item">
-            <span class="item-name">今日借阅册次</span>
+            <span class="item-name">今日办证人数</span>
             <span class="item-num">{{mapDistricData.value.applicants}}</span>
           </div>
           <div class="data-item">
-            <span class="item-name">今日借阅册次</span>
+            <span class="item-name">今日到馆人次</span>
             <span class="item-num">{{mapDistricData.value.enterNum}}</span>
           </div>
           <div class="data-item">
-            <span class="item-name">今日借阅册次</span>
+            <span class="item-name">馆藏图书数量</span>
             <span class="item-num">{{mapDistricData.value.bookNum}}</span>
           </div>
         </div>
@@ -343,11 +348,12 @@ onUnmounted(() => {
       height: 307px;
       align-self: flex-end;
       display: flex;
-      padding: 0 24px;
+      justify-content: space-evenly;
+      /* padding: 0 24px; */
       padding-top: 23px; 
-      box-sizing: border-box;
+      /* box-sizing: border-box; */
       .left {
-        margin-right: 24px;
+        /* margin-right: 24px; */
         padding-bottom: 24px;
         .header {
           display: flex;
@@ -444,6 +450,7 @@ onUnmounted(() => {
           max-height: 200px;
           overflow: scroll;
           scrollbar-width: none;
+          transition:all .1s ease-in-out;
           &::-webkit-scrollbar {
             display: none
           }
@@ -457,12 +464,13 @@ onUnmounted(() => {
         .video {
           height: 220px;
           video {
-            width: 100%
+            width: 100%;
+            height: 220px;
           }
         }
         .video-text {
           position: absolute;
-          left: 18px;
+          left: 19px;
           bottom: 33px;
           font-family: 'Microsoft YaHei';
           font-size: 14px;
