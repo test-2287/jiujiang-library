@@ -22,6 +22,8 @@ export default defineComponent({
         <ChartHeader :title="'新书推荐'"/>
         <div class="new-books-list">
         <swiper :modules="modules"
+                :slidesPerView="3"
+                :loop="true"
                 :autoplay="{
                     deplay: 3000
                 }"
@@ -39,6 +41,9 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+        </SwiperSlide>
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-bofuwa.png" alt="" />
@@ -50,6 +55,9 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-bofuwa.png" alt="" />
@@ -75,6 +83,9 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+        </SwiperSlide>
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-hamelton.png" alt="" />
@@ -86,6 +97,9 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+        </SwiperSlide>
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-hamelton.png" alt="" />
@@ -111,6 +125,9 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+        </SwiperSlide>
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-maboyong.png" alt="" />
@@ -122,6 +139,9 @@ export default defineComponent({
                     中信出版社
                 </span>
             </div>
+        </SwiperSlide>
+
+            <SwiperSlide>
             <div class="new-book-item">
                 <div class="book-image">
                     <img src="/book-maboyong.png" alt="" />
@@ -134,6 +154,7 @@ export default defineComponent({
                 </span>
             </div>
             </SwiperSlide>
+
         </swiper>
         </div>
     </div>
