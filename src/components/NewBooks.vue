@@ -162,7 +162,9 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
-
+:deep(.swiper-wrapper) {
+    width: 399px;
+}
 :deep(.swiper-slide) {
     display: flex;
 }
