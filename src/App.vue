@@ -84,22 +84,23 @@ onMounted(() => {
 
 
 let bulletinActive = ref(true)
-let bulletinTimer = null
+const historyContent = ref(null)
+const bulletinContent = ref(null)
+
 const toggleBulletinHistory = () => {
   
-  bulletinTimer = setTimeout(() => {
-    bulletinActive.value = false  
+  setTimeout(() => {
+    bulletinActive.value = !bulletinActive.value
     nextTick(() => {
-      scrollHistoryContent()
+      scrollContent(bulletinActive.value? bulletinContent:historyContent)
     })
   }, 4000)
 }
 
-
-const historyContent = ref(null)
-const scrollHistoryContent = () => {
+const scrollContent = (refDom) => {
   let contentScrollTimer = null
-  const contentDom = historyContent.value
+  
+  const contentDom = refDom.value
   const contentParent = contentDom.parentElement
   const contentHeight = contentDom.clientHeight
   const parentHeight = contentParent.clientHeight
@@ -112,15 +113,19 @@ const scrollHistoryContent = () => {
       } else {
         contentParent.scrollTop = contentDom.scrollHeight
         clearInterval(contentScrollTimer)
-        bulletinActive.value = true
-        toggleBulletinHistory()
+        bulletinActive.value = !bulletinActive.value
+        nextTick(() => {
+          scrollContent(bulletinActive.value? bulletinContent:historyContent)
+        })
       }    
     }, 100)
+  } else {
+    toggleBulletinHistory()
   }
 }
 
 onMounted(() => {
-  toggleBulletinHistory()
+  scrollContent(bulletinContent)
 })
 
 
@@ -212,8 +217,11 @@ onMounted(() => {
               </div>
               <div class="title">关于开展对设区市人民政府履行教育职责督导评价满意度调查的通知</div> 
             </div>
-            <div class="content">
-              根据《江西省人民政府教育督导委员会关于印发〈2022年对设区市人民政府履行教育职责督导评价工作实施方案〉的通知》（赣教督委字〔2022〕6号）要求，为广泛了解社情民意，客观、公正、科学地评价设区市人民政府履行教育职责情况，经研究，决定开展设区市人民政府履行教育职责督导评价满意度调查。
+            <div class="content-box">
+              <div class="content" ref="bulletinContent">
+                根据《江西省人民政府教育督导委员会关于印发〈2022年对设区市人民政府履行教育职责督导评价工作实施方案〉的通知》（赣教督委字〔2022〕6号）要求，为广泛了解社情民意，客观、公正、科学地评价设区市人民政府履行教育职责情况，经研究，决定开展设区市人民政府履行教育职责督导评价满意度调查。
+                根据《江西省人民政府教育督导委员会关于印发〈2022年对设区市人民政府履行教育职责督导评价工作实施方案〉的通知》（赣教督委字〔2022〕6号）要求，为广泛了解社情民意，客观、公正、科学地评价设区市人民政府履行教育职责情况，经研究，决定开展设区市人民政府履行教育职责督导评价满意度调查。
+              </div>
             </div>
           </div>
           <div class="history" :class="{'active': !bulletinActive}">
@@ -443,6 +451,17 @@ onMounted(() => {
           font-size: 14px;
           line-height: 24px;
           color:#AFC4F9;  
+        }
+
+        .bulletin .content-box {
+          height: 150px;
+          max-height: 150px;
+          overflow: scroll;
+          scrollbar-width: none;
+          transition:all .1s ease-in-out;
+          &::-webkit-scrollbar {
+            display: none
+          }
         }
 
         .history {
