@@ -61,7 +61,15 @@ export default defineComponent({
                         lineStyle:{
                             color: 'rgba(255, 255, 255, 0.05)'
                         } 
-                    }
+                    },
+                    name: '借还册次',
+                    nameTextStyle: {
+                        align:'left',
+                        verticalAlign: 'top',
+                        fontSize: 10,
+                        lineHeight: 12,
+                        padding: [10, 0, 0, 10]
+                    },
                 },
                 series: [
                     {
