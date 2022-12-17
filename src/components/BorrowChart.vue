@@ -20,10 +20,11 @@ export default defineComponent({
         onMounted(() => {
             options.value = {
                 grid: {
-                    width: '380px',
-                    height: '145px',
-                    top: '26px',
-                    left: '20px'
+                    width: '406px',
+                    top: '12px',
+                    left: '7px',
+                    bottom: '5px',
+                    containLabel: true,
                 },
                 xAxis: {
                     data: ['1月', '2月', '3', '4', '5', '6'],
@@ -141,6 +142,7 @@ export default defineComponent({
 .chart{
     width: 406px;
     height: 190px;
+    padding: 0 8px;
 }
 
 .data-list {
