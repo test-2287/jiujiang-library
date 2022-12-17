@@ -281,6 +281,10 @@ onMounted(() => {
     background-image: url('/page-title-font.svg');
     background-size: cover;
     margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .date-time {
     display: flex;
