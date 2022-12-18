@@ -48,8 +48,12 @@ export default defineComponent({
                         show: false
                         // inside: true
                     },
+                    boundaryGap: true,
+                    // min: 1,
+                    // max: 15
                 },
                 yAxis: {
+                    // onZero: false,
                     show: true,
                     type: 'value',
                     axisLine:{
