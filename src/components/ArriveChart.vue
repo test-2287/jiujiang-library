@@ -29,7 +29,11 @@ export default defineComponent({
 
                 xAxis: {
                     type: 'category',
-                    data: ['1月', '2月', '3y', '4y', '5y', '6y'],
+                    // '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时', '24时', '25时'
+                    // data: [ 10,11,12,13,14,15, 16, 17, 18, 19, 20,21, 22, 24, 25],
+                    // data: ['10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时', '24时', '25时'],
+                    // data: [1,2,3,4,5,6],
+                    data: ['8时','9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时','19时', '20时', '21时', '22时'],
                     axisLine:{
                         lineStyle: {
                             color: 'rgba(255, 255, 255, 0.2)'
@@ -49,11 +53,19 @@ export default defineComponent({
                         // inside: true
                     },
                     boundaryGap: true,
-                    // min: 1,
-                    // max: 15
+
+                    // min: 0,
+                    max: 15,
+
+                    // min: function(value) {
+                    //     return value.min
+                    // },
+                    max: function(value) {
+                        return value.min + value.max + 1
+                    }
                 },
                 yAxis: {
-                    // onZero: false,
+                    onZero: false,
                     show: true,
                     type: 'value',
                     axisLine:{
@@ -87,7 +99,7 @@ export default defineComponent({
                 series: [
                     {
                         type: 'bar',
-                        data: [40, 40, 40, 40, 40, 40],
+                        data: [40, 40, 40, 40, 40, 40,40, 40, 40, 40, 40, 40,40, 40, 40],
                         color: {
                             type:'linear',
                             x: 0,
@@ -100,21 +112,21 @@ export default defineComponent({
                             ], 
                         }
                     },
-                    {
-                        type: 'bar',
-                        data: [20, 20, 20, 20, 20, 20],
-                        color: {
-                            type:'linear',
-                            x: 0,
-                            y: 1,
-                            x2: 0,
-                            y2: 0,
-                            colorStops:[
-                                { offset: 0, color: 'rgba(210, 106, 14, 0)'},
-                                { offset: 1, color: 'rgba(210, 106, 14, 1)'},
-                            ]
-                        }
-                    }
+                    // {
+                    //     type: 'bar',
+                    //     data: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20, 20, 20],
+                    //     color: {
+                    //         type:'linear',
+                    //         x: 0,
+                    //         y: 1,
+                    //         x2: 0,
+                    //         y2: 0,
+                    //         colorStops:[
+                    //             { offset: 0, color: 'rgba(210, 106, 14, 0)'},
+                    //             { offset: 1, color: 'rgba(210, 106, 14, 1)'},
+                    //         ]
+                    //     }
+                    // }
                 ]
             }
 
